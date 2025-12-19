@@ -15,12 +15,12 @@ const ContactInfo = [
 
 export default function Contact() {
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-100 dark:bg-background py-24">
       <main
         id="contact"
-        className="container mx-auto  px-16 py-24 flex flex-col justify-center items-center bg-gray-50"
+        className="container mx-auto  px-16 py-24 flex flex-col justify-center items-center  bg-gray-50 dark:bg-muted"
       >
-        <h1 className="text-4xl sm:text-6xl font-semibold text-center text-primary">
+        <h1 className="text-4xl sm:text-6xl font-semibold text-center text-primary dark:text-white">
           Get In Touch
         </h1>
         <div className="flex flex-col items-center mt-10">

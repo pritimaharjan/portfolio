@@ -1,4 +1,6 @@
+import { BlurFade } from "@/components/ui/blur-fade";
 import About from "./component/About";
+import Banner from "./component/Banner";
 import Contact from "./component/contact";
 import Experiance from "./component/Experiance";
 import Home from "./component/Home";
@@ -10,13 +12,16 @@ export default function Page() {
   return (
     <>
       <Navbar />
-      <Home />
-      {/* <About /> */}
-      <Skill />
+      <BlurFade inView>
+        <Home />
+        {/* <About /> */}
+        <Skill />
 
-      <Project />
-      <Experiance />
-      <Contact />
+        <Project />
+        {/* <Banner /> */}
+        <Experiance />
+        <Contact />
+      </BlurFade>
     </>
   );
 }
