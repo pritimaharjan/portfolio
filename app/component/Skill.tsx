@@ -1,14 +1,31 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Code2, Brain, Database, Layout, Server } from "lucide-react";
+import {
+  Code2,
+  Brain,
+  Database,
+  Layout,
+  Server,
+  RepeatIcon,
+  CodeXml,
+  icons,
+} from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { Marquee } from "@/components/ui/marquee";
 
 export default function Skill() {
   const webSkills = [
-    { category: "Frontend", skills: ["React", "Next.js", "HTML", "CSS"] },
+    {
+      category: "Frontend",
+      skills: ["React", "Next.js", "HTML", "CSS"],
+      icon: <CodeXml />,
+    },
     {
       category: "Backend",
       skills: ["Laravel", "Inertia.js", "Django (Beginner)"],
+      icon: <Server />,
     },
-    { category: "Database", skills: ["SQL"] },
+    { category: "Database", skills: ["SQL"], icon: <Database /> },
   ];
 
   const dataSkills = [
@@ -23,82 +40,72 @@ export default function Skill() {
     },
   ];
 
-  return (
-    <section className="bg-gray-100" id="skill">
-      <div className="container mx-auto py-24 px-6 sm:px-16">
-        <div className="flex flex-col items-center py-24 text-center">
-          <h2 className="text-4xl sm:text-6xl font-bold text-primary">
-            Skills
-          </h2>
-          <p className="mt-4 text-gray-600 max-w-2xl">
-            {" "}
-            My technical foundation in web development, Python, and data
-            analytics
-          </p>
+  const firstRow = webSkills;
+  const secondRow = dataSkills;
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16 w-full max-w-5xl">
-            {/* Web Development Card */}
-            <Card className="shadow-lg border-none bg-white hover:shadow-xl transition duration-300 hover:-translate-y-1 rounded-2xl">
-              <CardHeader className="flex flex-row items-center gap-3 pb-2">
-                <div className="p-3 rounded-full bg-primary/10 text-primary">
-                  <Layout size={28} />
-                </div>
-                <CardTitle className="text-2xl font-bold text-gray-800">
-                  Web Development
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-5 mt-4">
-                {webSkills.map((group, index) => (
-                  <div key={index}>
-                    <h4 className="font-semibold text-gray-700 text-lg mb-1 flex items-center gap-2">
-                      {group.category === "Frontend" && (
-                        <Code2 size={18} className="text-primary" />
-                      )}
-                      {group.category === "Backend" && (
-                        <Server size={18} className="text-primary" />
-                      )}
-                      {group.category === "Database" && (
-                        <Database size={18} className="text-primary" />
-                      )}
-                      {group.category}
-                    </h4>
-                    <p
-                      className="text-gray-600 text-sm tracking-wide
-                     text-left"
-                    >
-                      {group.skills.join(", ")}
-                    </p>
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
-
-            {/* Data Science Card */}
-            <Card className="shadow-lg border-none bg-white hover:shadow-xl transition duration-300 hover:-translate-y-1 rounded-2xl">
-              <CardHeader className="flex flex-row items-center gap-3 pb-2">
-                <div className="p-3 rounded-full bg-primary/10 text-primary">
-                  <Brain size={28} />
-                </div>
-                <CardTitle className="text-2xl font-bold text-gray-800">
-                  Data Science with Python
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-5 mt-4">
-                {dataSkills.map((group, index) => (
-                  <div key={index}>
-                    <h4 className="font-semibold text-gray-700 text-lg mb-1 text-left">
-                      {group.category}
-                    </h4>
-                    <p className="text-gray-600 text-sm tracking-wide text-left">
-                      {group.skills.join(", ")}
-                    </p>
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
-          </div>
+  const ReviewCard = ({
+    category,
+    skills,
+    icon,
+  }: {
+    category: string;
+    skills: string[];
+    icon?: React.ReactNode;
+  }) => {
+    return (
+      <figure
+        className={cn(
+          "relative h-full w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
+          "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
+          "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]"
+        )}
+      >
+        <div className="flex items-center gap-2">
+          {icon && <div>{icon}</div>}
+          <h1 className="text-sm font-semibold dark:text-white">{category}</h1>
         </div>
-      </div>
-    </section>
+
+        <ul className="mt-3 space-y-1 text-sm text-gray-600 dark:text-white/70">
+          {skills.map((skill) => (
+            <li key={skill}>• {skill}</li>
+          ))}
+        </ul>
+      </figure>
+    );
+  };
+
+  return (
+    <main>
+      <section className="bg-gray-100 dark:bg-background py-24" id="skill">
+        <h1 className="text-4xl sm:text-6xl font-bold py-24 text-center text-primary dark:text-white mb-12">
+          Skills
+        </h1>
+        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
+          <Marquee pauseOnHover className="[--duration:20s]">
+            {firstRow.map((review) => (
+              <ReviewCard
+                key={review.category}
+                category={review.category}
+                skills={review.skills}
+                icon={review.icon}
+              />
+            ))}
+          </Marquee>
+          <Marquee reverse pauseOnHover className="[--duration:20s]">
+            {secondRow.map((review) => (
+              <ReviewCard
+                key={review.category}
+                category={review.category}
+                skills={review.skills}
+                // icon={review.icon}
+              />
+            ))}
+          </Marquee>
+          {/* <div className="from-background pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r"></div> */}
+          {/* <div className="from-background pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l"></div> */}
+        </div>
+      </section>
+      <section></section>
+    </main>
   );
 }

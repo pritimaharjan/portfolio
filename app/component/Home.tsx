@@ -1,22 +1,22 @@
 "use client";
+
 import { Button } from "@/components/ui/button";
-import {
-  ArrowRightIcon,
-  GitBranchIcon,
-  GitGraphIcon,
-  Github,
-  Link2Icon,
-  Linkedin,
-} from "lucide-react";
+import { CardContent } from "@/components/ui/card";
+import { ArrowRightIcon, Github, Linkedin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";
 import { TypeAnimation } from "react-type-animation";
 
 export default function Home() {
   return (
-    <div className="bg-gray-100 dark:bg-background ">
-      {" "}
+    <div className="bg-gray-100 dark:bg-background transition-colors duration-300">
       {/* AOS Script */}
+      <Script
+        src="https://unpkg.com/aos@2.3.1/dist/aos.js"
+        strategy="beforeInteractive"
+      />
+
       <section className="container mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-center gap-12 py-24">
           {/* LEFT SECTION */}
@@ -29,7 +29,7 @@ export default function Home() {
               <span className="block text-3xl text-muted-foreground dark:text-gray-400">
                 Er.
               </span>
-              <span className="block text-6xl sm:text-7xl bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient">
+              <span className="block text-6xl sm:text-7xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient">
                 Priti Maharjan
               </span>
             </h1>
@@ -65,38 +65,37 @@ export default function Home() {
             <div className="flex gap-4">
               <Link
                 href="https://github.com/pritimaharjan"
-                className="inline-block mt-6 px-6 py-3  text-primary rounded-lg shadow-md btn-lg"
+                target="_blank"
+                className="p-3 rounded-full shadow bg-white dark:bg-muted hover:scale-110 transition"
               >
-                <Github size={24} color="black" />
-                <span>Github</span>
+                <Github />
               </Link>
+
               <Link
                 href="https://www.linkedin.com/in/priti-maharjan-2955b5309/"
-                className="inline-block mt-6 px-6 py-3 text-primary rounded-lg shadow-md btn-lg"
+                target="_blank"
+                className="p-3 rounded-full shadow bg-white dark:bg-muted hover:scale-110 transition"
               >
                 <Linkedin />
-                LinkedIN
               </Link>
             </div>
+
+            {/* Resume Button */}
             <a href="/my_CV-2.pdf" download>
-              <Button className="max-w-fit flex items-center gap-2">
+              <Button className="w-fit flex items-center gap-2 mt-4 dark:bg-primary dark:text-white">
                 <ArrowRightIcon />
                 Download Resume
               </Button>
             </a>
           </div>
 
-          {/* RIGHT SECTION */}
-          <div data-aos="fade-left" className="w-full max-w-md">
-            <div className="relative h-[550px] w-full overflow-hidden rounded-xl animate-float dark:bg-muted shadow-lg dark:shadow-none">
-              <Image
-                src="/Profile.png"
-                alt="Priti"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
+          <div className=" relative w-full  ">
+            <Image
+              src="/Profile.png"
+              alt="Priti"
+              fill
+              className="object-cover rounded-xl"
+            />
           </div>
         </div>
       </section>
