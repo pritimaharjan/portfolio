@@ -10,14 +10,23 @@ import { TypeAnimation } from "react-type-animation";
 
 export default function Home() {
   return (
-    <div className="bg-gray-100 dark:bg-background transition-colors duration-300">
+    <div
+      className="bg-gray-200 h-screen dark:bg-background transition-colors duration-300 bg-cover bg-center"
+      data-aos="fade-left"
+      style={{
+        backgroundImage: `url("/Profile.png")`,
+        backgroundPosition: "right 10% center",
+        backgroundSize: "50%",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       {/* AOS Script */}
       <Script
         src="https://unpkg.com/aos@2.3.1/dist/aos.js"
         strategy="beforeInteractive"
       />
 
-      <section className="container mx-auto px-6">
+      <section className="container  mx-auto ">
         <div className="flex flex-col lg:flex-row items-center gap-12 py-24">
           {/* LEFT SECTION */}
           <div
@@ -33,7 +42,6 @@ export default function Home() {
                 Priti Maharjan
               </span>
             </h1>
-
             {/* Typing Role */}
             <TypeAnimation
               sequence={[
@@ -50,8 +58,7 @@ export default function Home() {
               speed={50}
               repeat={Infinity}
               className="text-lg text-gray-600 dark:text-gray-300"
-            />
-
+            />{" "}
             {/* Description */}
             <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
               I specialize in building modern web applications using React and
@@ -60,7 +67,6 @@ export default function Home() {
               analytics, and machine learning and am motivated to implement and
               expand these skills through real-world applications.
             </p>
-
             {/* Social Icons */}
             <div className="flex gap-4">
               <Link
@@ -79,7 +85,6 @@ export default function Home() {
                 <Linkedin />
               </Link>
             </div>
-
             {/* Resume Button */}
             <a href="/my_CV-2.pdf" download>
               <Button className="w-fit flex items-center gap-2 mt-4 dark:bg-primary dark:text-white">
@@ -88,17 +93,9 @@ export default function Home() {
               </Button>
             </a>
           </div>
-
-          <div className=" relative w-full  ">
-            <Image
-              src="/Profile.png"
-              alt="Priti"
-              fill
-              className="object-cover rounded-xl"
-            />
-          </div>
         </div>
       </section>
+      <div className="col-span-1 flex justify-center items-center"></div>
     </div>
   );
 }

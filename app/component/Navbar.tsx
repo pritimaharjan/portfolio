@@ -20,7 +20,7 @@ export default function Navbar() {
       className={`containter dark:bg-background max-auto px-16 sticky top-0 z-50 h-20 flex flex-row justify-between items-center transition-all duration-300 ${
         isScrolling
           ? "bg-white dark:bg-muted shadow-md"
-          : "bg-gray-100 backdrop-blur-lg"
+          : "bg-gray-200 backdrop-blur-lg"
       }`}
     >
       <h1
