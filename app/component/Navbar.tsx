@@ -5,6 +5,7 @@ import {
   Sheet,
   SheetContent,
   SheetHeader,
+  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
@@ -60,8 +61,9 @@ export default function Navbar() {
           <SheetTrigger>
             <Menu />
           </SheetTrigger>
-          <SheetHeader> </SheetHeader>
-          <SheetContent>
+
+          <SheetContent className=" px-5 py-20">
+            <SheetTitle>Er.Priti Maharjan</SheetTitle>
             <Link href="#home"> Home</Link>
 
             {/* <Link href="#about">About</Link> */}
