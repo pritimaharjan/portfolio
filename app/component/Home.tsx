@@ -10,7 +10,7 @@ import { TypeAnimation } from "react-type-animation";
 export default function Home() {
   return (
     <div
-      className="relative bg-gray-200 dark:bg-background transition-colors duration-300 min-h-screen bg-cover bg-center"
+      className="relative top-1/2 bg-gray-200 dark:bg-background transition-colors duration-300 min-h-screen bg-cover bg-center"
       data-aos="fade-left"
       style={{
         backgroundImage: `url("/Profile.png")`,
@@ -20,7 +20,7 @@ export default function Home() {
       }}
     >
       {/* Hide background image on small screens */}
-      <div className="absolute inset-0 bg-gray-200 dark:bg-background "></div>
+      <div className="absolute inset-0 bg-gray-200 dark:bg-background lg:hidden"></div>
 
       {/* AOS Script */}
       <Script
