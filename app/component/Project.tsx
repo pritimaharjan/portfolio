@@ -57,21 +57,21 @@ export default function Project() {
       link: "https://github.com/pritimaharjan/newTodoList.git",
       tools: ["React", "HTML", "CSS"],
     },
-    {
-      title: "Lumbini Handicraft E-commerce Platform",
-      icon: <ShoppingBag size={28} className="text-primary" />,
-      img: "/ecommerce.jpg",
-      description:
-        "A full-stack e-commerce solution built with Laravel, Inertia.js, and React to support product browsing and secure checkout.",
-      link: "#",
-      tools: ["Laravel", "Inertia.js", "React", "MySQL"],
-    },
+    // {
+    //   title: "Lumbini Handicraft E-commerce Platform",
+    //   icon: <ShoppingBag size={28} className="text-primary" />,
+    //   img: "/ecommerce.jpg",
+    //   description:
+    //     "A full-stack e-commerce solution built with Laravel, Inertia.js, and React to support product browsing and secure checkout.",
+    //   link: "#",
+    //   tools: ["Laravel", "Inertia.js", "React", "MySQL"],
+    // },
   ];
 
   return (
-    <main id="project" className="bg-gray-50 dark:bg-background py-24">
+    <main id="project" className="bg-gray-50 dark:bg-background py-20">
       <section className="container mx-auto px-6 sm:px-16">
-        <h1 className="text-4xl sm:text-6xl font-bold text-center text-primary dark:text-white mb-16">
+        <h1 className="text-4xl sm:text-6xl font-bold text-center text-primary dark:text-white mb-12">
           Projects
         </h1>
 

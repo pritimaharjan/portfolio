@@ -1,8 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { CardContent } from "@/components/ui/card";
-import { ArrowRightIcon, Github, Linkedin } from "lucide-react";
+import { ArrowRightIcon, Download, Github, Linkedin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
@@ -11,37 +10,41 @@ import { TypeAnimation } from "react-type-animation";
 export default function Home() {
   return (
     <div
-      className="bg-gray-200 h-screen dark:bg-background transition-colors duration-300 bg-cover bg-center"
+      className="relative bg-gray-200 dark:bg-background transition-colors duration-300 min-h-screen bg-cover bg-center"
       data-aos="fade-left"
       style={{
         backgroundImage: `url("/Profile.png")`,
-        backgroundPosition: "right 10% center",
-        backgroundSize: "50%",
+        backgroundPosition: "right center",
+        backgroundSize: "45%",
         backgroundRepeat: "no-repeat",
       }}
     >
+      {/* Hide background image on small screens */}
+      <div className="absolute inset-0 bg-gray-200 dark:bg-background "></div>
+
       {/* AOS Script */}
       <Script
         src="https://unpkg.com/aos@2.3.1/dist/aos.js"
         strategy="beforeInteractive"
       />
 
-      <section className="container  mx-auto ">
-        <div className="flex flex-col lg:flex-row items-center gap-12 py-24">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="flex flex-col lg:flex-row items-center gap-12 py-20 lg:py-32">
           {/* LEFT SECTION */}
           <div
             data-aos="fade-right"
-            className="flex flex-col justify-center gap-6 text-left max-w-xl"
+            className="flex flex-col justify-center gap-6 text-center lg:text-left max-w-xl"
           >
             {/* Name */}
             <h1 className="font-extrabold leading-tight">
-              <span className="block text-3xl text-muted-foreground dark:text-gray-400">
+              <span className="block text-xl sm:text-2xl text-muted-foreground dark:text-gray-400">
                 Er.
               </span>
-              <span className="block text-6xl sm:text-7xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient">
+              <span className="block text-4xl sm:text-5xl lg:text-7xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient">
                 Priti Maharjan
               </span>
             </h1>
+
             {/* Typing Role */}
             <TypeAnimation
               sequence={[
@@ -57,18 +60,20 @@ export default function Home() {
               wrapper="span"
               speed={50}
               repeat={Infinity}
-              className="text-lg text-gray-600 dark:text-gray-300"
-            />{" "}
+              className="text-base sm:text-lg text-gray-600 dark:text-gray-300"
+            />
+
             {/* Description */}
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
               I specialize in building modern web applications using React and
               Next.js, with a strong focus on clean UI, reusable components, and
               performance optimization. I have basic experience in Python, data
               analytics, and machine learning and am motivated to implement and
               expand these skills through real-world applications.
             </p>
+
             {/* Social Icons */}
-            <div className="flex gap-4">
+            <div className="flex justify-center lg:justify-start gap-4">
               <Link
                 href="https://github.com/pritimaharjan"
                 target="_blank"
@@ -85,17 +90,19 @@ export default function Home() {
                 <Linkedin />
               </Link>
             </div>
+
             {/* Resume Button */}
-            <a href="/my_CV-2.pdf" download>
-              <Button className="w-fit flex items-center gap-2 mt-4 dark:bg-primary dark:text-white">
-                <ArrowRightIcon />
-                Download Resume
-              </Button>
-            </a>
+            <div className="flex justify-center  lg:justify-start">
+              <a href="/my_CV-2.pdf" download>
+                <Button className="flex items-center dark:bg-white gap-2 mt-4">
+                  <Download />
+                  Download Resume
+                </Button>
+              </a>
+            </div>
           </div>
         </div>
       </section>
-      <div className="col-span-1 flex justify-center items-center"></div>
     </div>
   );
 }

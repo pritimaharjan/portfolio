@@ -76,8 +76,8 @@ export default function Skill() {
 
   return (
     <main>
-      <section className="bg-gray-100 dark:bg-background py-24" id="skill">
-        <h1 className="text-4xl sm:text-6xl font-bold py-24 text-center text-primary dark:text-white mb-12">
+      <section className="bg-gray-100 dark:bg-background py-20" id="skill">
+        <h1 className="text-4xl sm:text-6xl font-bold  text-center text-primary dark:text-white mb-12">
           Skills
         </h1>
         <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
