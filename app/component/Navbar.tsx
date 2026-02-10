@@ -11,6 +11,7 @@ import {
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Hero from "./Hero";
 
 export default function Navbar() {
   const [isScrolling, setIsScrolling] = useState(false);
@@ -26,15 +27,15 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`containter hidden  dark:bg-background max-auto px-16 sticky top-0 z-50 h-20 md:flex flex-row justify-between items-center transition-all duration-300 ${
+        className={` hidden  dark:bg-background max-auto px-16 sticky top-0 z-50 h-20 md:flex flex-row justify-between items-center transition-all duration-300 ${
           isScrolling
-            ? "bg-white dark:bg-muted shadow-md"
-            : "bg-gray-200 backdrop-blur-lg"
+            ? "bg-black/50 backdrop-blur-lg"
+            : "bg-black/50  backdrop-blur-lg"
         }`}
       >
         <h1
-          className={`text-primary dark:text-white font-semibold text-xl ${
-            isScrolling ? "text-foregroun" : "text-gray-600"
+          className={`text-white dark:text-white font-semibold text-xl ${
+            isScrolling ? "text-white" : "text-white"
           }`}
         >
           {isScrolling ? "Er.Priti Maharjan" : " Portfolio"}
@@ -42,11 +43,12 @@ export default function Navbar() {
 
         <div
           className={`flex flex-row justify-end items-center gap-6 transition-colors dark:text-white duration-300 ${
-            isScrolling ? "text-primary" : "text-gray-600"
+            isScrolling ? "text-white" : "text-foreground"
           }`}
         >
           <Link href="#home"> Home</Link>
 
+          <Link href="#about-me"> About Me</Link>
           {/* <Link href="#about">About</Link> */}
           <Link href="#skill">Skills</Link>
           <Link href="#project">Project</Link>
@@ -75,6 +77,7 @@ export default function Navbar() {
         </Sheet>
         <AnimatedThemeToggler />
       </nav>
+      {/* <Hero /> */}
     </>
   );
 }

@@ -7,12 +7,14 @@ import Home from "./component/Home";
 import Navbar from "./component/Navbar";
 import Project from "./component/Project";
 import Skill from "./component/Skill";
+import Hero from "./component/Hero";
 
 export default function Page() {
   return (
     <>
       <Navbar />
       <BlurFade inView>
+        <Hero />
         <Home />
         {/* <About /> */}
         <Skill />

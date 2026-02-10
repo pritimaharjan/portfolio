@@ -57,10 +57,10 @@ export default function Skill() {
         className={cn(
           "relative h-full w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
           "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
-          "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]"
+          "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]",
         )}
       >
-        <div className="flex items-center gap-2">
+        <div className="flex text-black items-center gap-2">
           {icon && <div>{icon}</div>}
           <h1 className="text-sm font-semibold dark:text-white">{category}</h1>
         </div>
@@ -75,11 +75,21 @@ export default function Skill() {
   };
 
   return (
-    <main>
-      <section className="bg-gray-100 dark:bg-background py-20" id="skill">
-        <h1 className="text-4xl sm:text-6xl font-bold  text-center text-primary dark:text-white mb-12">
-          Skills
-        </h1>
+    <main id="skill" className="relavite ">
+      <section className=" bg-foreground  py-32 dark:bg-background">
+        <div className="max-w-7xl  mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-20">
+            <h2 className="text-sm text-black font-mono text-cyber-primary  dark:text-white  uppercase tracking-[0.4em] mb-4">
+              Technical Skill Summary
+            </h2>
+            <div className="flex items-baseline gap-4">
+              <h3 className="text-4xl typo-secondary md:text-5xl font-bold dark:text-white  tracking-tight">
+                Capability Overview
+              </h3>
+              <div className="h-px flex-grow  from-cyber-primary/5 to-transparent bg-gradient-to-r from-indigo-500 via-purple-500 "></div>
+            </div>
+          </div>
+        </div>
         <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
           <Marquee pauseOnHover className="[--duration:20s]">
             {firstRow.map((review) => (
@@ -105,7 +115,6 @@ export default function Skill() {
           {/* <div className="from-background pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l"></div> */}
         </div>
       </section>
-      <section></section>
     </main>
   );
 }
