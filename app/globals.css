@@ -151,13 +151,82 @@
   @apply px-8 py-4 text-lg;
 }
 
+@keyframes line-top {
+  0% {
+    transform: translateY(-50%);
+    opacity: 0;
+    width: 0;
+    left: 50%;
+  }
+  30% {
+    opacity: 1;
+    width: 100%;
+    left: 0;
+  }
+  100% {
+    transform: translateY(calc(-50% - 40px));
+    opacity: 1;
+    width: 100%;
+    left: 0;
+  }
+}
+
+@keyframes line-bottom {
+  0% {
+    transform: translateY(-50%);
+    opacity: 0;
+    width: 0;
+    left: 50%;
+  }
+  30% {
+    opacity: 1;
+    width: 100%;
+    left: 0;
+  }
+  100% {
+    transform: translateY(calc(-50% + 40px));
+    opacity: 1;
+    width: 100%;
+    left: 0;
+  }
+}
+
+@keyframes name-reveal {
+  0%,
+  60% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-line-top {
+  animation: line-top 1.2s ease-out forwards;
+}
+
+.animate-line-bottom {
+  animation: line-bottom 1.2s ease-out forwards;
+}
+
+.animate-name {
+  animation: name-reveal 1.2s ease-out forwards;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    background: var(--bg);
+    color: var(--ink);
   }
+  /* .card {
+    background: var(--bg-elev);
+    border: 1px solid var(--rule);
+  } */
 
   @keyframes gradient {
     0% {

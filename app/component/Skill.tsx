@@ -75,7 +75,7 @@ export default function Skill() {
   };
 
   return (
-    <main id="skill" className="relavite ">
+    <main className="relavite ">
       <section className=" bg-foreground  py-32 dark:bg-background">
         <div className="max-w-7xl  mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-20">

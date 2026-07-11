@@ -67,25 +67,31 @@ export default function Home() {
     //     </div>
     //   </section>
     // </div>
-    <div id="about-me" className="py-32 relative">
-      <div className=" bg-background/100 grid  md:grid-cols-2 sm:gap-10  max-w-7xl mx-auto px-4">
-        <div className="col-span-1  flex flex-col items-end justify-center">
-          <div className="h-150 bg-white md:px-2 md:w-150 rounded-lg overflow-hidden">
+    <div className="py-32 relative">
+      <div className="bg-background/100 grid md:grid-cols-2 sm:gap-10 max-w-7xl mx-auto px-4">
+        <div className="col-span-1 flex flex-col items-end justify-center">
+          <div className="animate-name h-150 bg-white md:px-2 md:w-150 rounded-lg overflow-hidden">
             <img
               src="/Priti.jpeg"
               alt="Priti Maharjan"
               className="h-full w-full object-cover rounded-2xl"
             />
           </div>
-          <div className="-mt-12 hidden md:block bg-[#0f172a] ml-20 left-10  z-50 rounded-2xl p-7 border-l-6 border-[#f59e0b]">
-            <span className=" italic font-bold text-2xl">
+          <div
+            className="animate-name -mt-12 hidden md:block bg-[#0f172a] ml-20 left-10 z-50 rounded-2xl p-7 border-l-6 border-[#f59e0b]"
+            style={{ animationDelay: "0.2s" }}
+          >
+            <span className="italic font-bold text-2xl">
               "Code. Create. Improve"
             </span>
           </div>
         </div>
+
         <div className="col-span-1 py-20 top-1/2">
-          {/* <Badge>Professional Background</Badge> */}
-          <h1 className="font-extrabold leading-tight">
+          <h1
+            className="animate-name font-extrabold leading-tight"
+            style={{ animationDelay: "0.1s" }}
+          >
             <span className="block text-xl sm:text-2xl text-muted-foreground dark:text-gray-400">
               Er.
             </span>
@@ -93,24 +99,33 @@ export default function Home() {
               Priti Maharjan
             </span>
           </h1>
-          <TypeAnimation
-            sequence={[
-              "Web Developer",
-              1500,
-              "AI Enthusiast",
-              1500,
-              "React & Next.js Developer",
-              1500,
-              "Lifelong Learner",
-              1500,
-            ]}
-            wrapper="span"
-            speed={50}
-            repeat={Infinity}
-            className="text-base sm:text-lg text-gray-600 dark:text-gray-300"
-          />
 
-          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+          <span
+            className="animate-name block"
+            style={{ animationDelay: "0.3s" }}
+          >
+            <TypeAnimation
+              sequence={[
+                "Web Developer",
+                1500,
+                "AI Enthusiast",
+                1500,
+                "React & Next.js Developer",
+                1500,
+                "Lifelong Learner",
+                1500,
+              ]}
+              wrapper="span"
+              speed={50}
+              repeat={Infinity}
+              className="text-base sm:text-lg text-gray-600 dark:text-gray-300"
+            />
+          </span>
+
+          <p
+            className="animate-name text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed"
+            style={{ animationDelay: "0.4s" }}
+          >
             I specialize in building modern web applications using React and
             Next.js, with a strong focus on clean UI, reusable components, and
             performance optimization. I have basic experience in Python, data
@@ -118,11 +133,14 @@ export default function Home() {
             expand these skills through real-world applications.
           </p>
 
-          <div className="flex md:justify-center lg:justify-start mt-2 gap-4">
+          <div
+            className="animate-name flex md:justify-center lg:justify-start mt-2 gap-4"
+            style={{ animationDelay: "0.5s" }}
+          >
             <Link
               href="https://github.com/pritimaharjan"
               target="_blank"
-              className="p-3 rounded-full  bg-[#0f172a]  dark:bg-muted hover:scale-110 transition"
+              className="p-3 rounded-full bg-[#0f172a] dark:bg-muted hover:scale-110 transition"
             >
               <Github />
             </Link>
@@ -136,9 +154,12 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="flex md:justify-center  lg:justify-start">
+          <div
+            className="animate-name flex md:justify-center lg:justify-start"
+            style={{ animationDelay: "0.6s" }}
+          >
             <a href="/my_CV-2.pdf" download>
-              <Button className="flex items-center cursor-pointer bg-[#0f172a]  dark:bg-muted dark:text-white gap-2 mt-4">
+              <Button className="flex items-center cursor-pointer bg-[#0f172a] dark:bg-muted dark:text-white gap-2 mt-4">
                 <Download />
                 Download Resume
               </Button>

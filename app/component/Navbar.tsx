@@ -48,8 +48,7 @@ export default function Navbar() {
         >
           <Link href="#home"> Home</Link>
 
-          <Link href="#about-me"> About Me</Link>
-          {/* <Link href="#about">About</Link> */}
+          <Link href="#about"> About</Link>
           <Link href="#skill">Skills</Link>
           <Link href="#project">Project</Link>
           <Link href="#experience">Experiance</Link>
@@ -68,7 +67,7 @@ export default function Navbar() {
             <SheetTitle>Er.Priti Maharjan</SheetTitle>
             <Link href="#home"> Home</Link>
 
-            {/* <Link href="#about">About</Link> */}
+            <Link href="/about">About</Link>
             <Link href="#skill">Skills</Link>
             <Link href="#project">Project</Link>
             <Link href="#experience">Experiance</Link>

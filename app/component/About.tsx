@@ -3,10 +3,7 @@ import { ArrowBigLeft, ArrowRightIcon } from "lucide-react";
 import Image from "next/image";
 export default function About() {
   return (
-    <main
-      id="about"
-      className=" min-h-screen  flex items-center justify-center bg-white dark:bg-gray-900 text-primary "
-    >
+    <main className=" min-h-screen  flex items-center justify-center bg-white dark:bg-gray-900 text-primary ">
       <div className="container mx-auto py-24 px-16 text-center">
         <h1 className="text-4xl sm:text-6xl font-bold">About Me</h1>
 

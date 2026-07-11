@@ -1,39 +1,49 @@
 import { ChevronDown } from "lucide-react";
-import Image from "next/image";
 
 export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden -mt-10"
-      style={{ backgroundImage: "url(/bg.jpg)" }}
+      className="relative min-h-screen -mt-10 flex flex-col items-center justify-center overflow-hidden bg-#F8F8F8 dark:bg-black text-primary"
     >
-      <div className="absolute inset-0 circuit-bg opacity-30 pointer-events-none"></div>
+      {/* Top badges */}
+      <div className="flex items-center gap-4 mb-20 animate-name">
+        <a
+          href="#project"
+          className="px-5 py-2 dark:bg-white/5 bg-black/5 border dark:border-white/10  border-black/10 rounded-full text-black  dark:text-white font-mono backdrop-blur-sm hover:bg-white/10 transition-colors"
+        >
+          Projects
+        </a>
+        <a
+          href="#contact"
+          className="px-5 py-2 dark:bg-white/5  bg-black/5 border dark:border-white/10 border-black/10 rounded-full text-black  dark:text-white text-sm font-mono backdrop-blur-sm hover:bg-white/10 transition-colors"
+        >
+          Contact
+        </a>
+      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        <div className="inline-flex items-center gap-2 px-3 py-1 bg-engineer-900/50 border border-engineer-700/50 rounded-full text-engineer-300 text-xs font-mono mb-8 backdrop-blur-sm">
-          <span className="flex h-2 w-2 rounded-full bg-engineer-500 animate-pulse"></span>
+      {/* Name + Lines */}
+      <div className="relative flex items-center justify-center w-full max-w-5xl">
+        <div className="absolute top-2/4 h-[2px] -translate-y-2/4 bg-black dark:bg-white animate-line-top" />
+        <div className="absolute top-3/4 h-[2px] -translate-y-3/4 bg-black dark:bg-white  animate-line-bottom" />
+        <div className="relative flex items-center justify-center w-full max-w-5xl mt-10">
+          <h1 className="animate-name text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light uppercase text-black dark:text-white text-center leading-tight py-10">
+            Er.Priti Maharjan
+          </h1>
+        </div>
+      </div>
+
+      {/* Bottom badge */}
+      <div className="mt-20 animate-name">
+        <div className="inline-flex items-center gap-2 px-5 py-2 bg-white/5 border border-white/10 rounded-full text-black/60  dark:text-white/60 text-sm font-mono backdrop-blur-sm">
+          <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
           Available for new opportunities
         </div>
+      </div>
 
-        <h1 className="text-5xl md:text-8xl font-black mb-6 tracking-tighter bg-gradient-to-r from-white via-engineer-200 to-engineer-500 bg-clip-text text-transparent">
-          Web Development
-          <br /> Innovation.
-        </h1>
-
-        <p className="max-w-2xl mx-auto text-lg md:text-xl text-slate-400 mb-10 leading-relaxed">
-          Web Development Engineered for Impact.
-        </p>
-
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
-            href="#projects"
-            className="w-full sm:w-auto px-8 py-4 bg-engineer-500 hover:bg-engineer-600 text-white rounded-xl font-bold text-lg shadow-xl shadow-engineer-500/30 transition-all hover:-translate-y-1"
-          >
-            View Projects
-          </a>
-          <ChevronDown className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50" />
-        </div>
+      {/* Scroll indicator */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-name">
+        <ChevronDown className="w-6 h-6 text-white/40 animate-bounce" />
       </div>
     </section>
   );

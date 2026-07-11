@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
@@ -12,6 +13,8 @@ import {
 import {
   ArrowRight,
   Book,
+  Briefcase,
+  ExternalLink,
   LineChart,
   ListCheck,
   LucideScanFace,
@@ -19,131 +22,130 @@ import {
 } from "lucide-react";
 import { Marquee } from "@/components/ui/marquee";
 import { PROJECTS } from "../data/data";
+import { motion } from "motion/react";
 
 export default function Project() {
   console.log("pefdcvnjd", PROJECTS);
-  const projects = [
-    {
-      title: "Book Recommendation System",
-      icon: <Book size={28} className="text-primary" />,
-      img: "/book_recommendation.jpg",
-      description:
-        "A machine learning system that recommends books using popularity-based and collaborative filtering methods.",
-      link: "https://github.com/pritimaharjan/Book_recommendation_system.git",
-      tools: ["Python", "Matplotlib", "Seaborn", "Cosine Similarity"],
-    },
-    {
-      title: "Customer Churn Prediction",
-      icon: <LineChart size={28} className="text-primary" />,
-      img: "/dataset-cover.png",
-      description:
-        "Built a predictive model using Random Forest to analyze customer behavior. Data analyzed in SSMS and visualized with Power BI.",
-      link: "https://github.com/pritimaharjan/customer_churn_analysis.git",
-      tools: ["Python", "Pandas", "NumPy", "Matplotlib"],
-    },
-    {
-      title: "Emotion Detection with YOLO",
-      icon: <LucideScanFace size={28} className="text-primary" />,
-      img: "/emotion_detection.webp",
-      description:
-        "Developed a real-time emotion detection system leveraging YOLOv8 and Roboflow for facial emotion classification.",
-      link: "https://github.com/pritimaharjan/Emotion_detection_project.git",
-      tools: ["YOLOv8", "Roboflow", "Python"],
-    },
-    {
-      title: "Todo List Application",
-      img: "/Todo_list.png",
-      description:
-        "A simple and efficient task manager built with React, allowing users to add, edit, and remove daily tasks.",
-      link: "https://github.com/pritimaharjan/newTodoList.git",
-      tools: ["React", "HTML", "CSS"],
-      icon: <ListCheck size={28} className="text-primary" />,
-    },
-    // {
-    //   title: "Lumbini Handicraft E-commerce Platform",
-    //   icon: <ShoppingBag size={28} className="text-primary" />,
-    //   img: "/ecommerce.jpg",
-    //   description:
-    //     "A full-stack e-commerce solution built with Laravel, Inertia.js, and React to support product browsing and secure checkout.",
-    //   link: "#",
-    //   tools: ["Laravel", "Inertia.js", "React", "MySQL"],
-    // },
-  ];
 
+  const stagger = {
+    visible: { transition: { staggerChildren: 0.15 } },
+  };
+  const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
+      },
+    },
+  };
   return (
-    <main id="project" className=" dark:bg-background py-32 relative">
+    <section id="project" className="py-20 bg-gray-50 dark:bg-[#0a0a0a]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-20">
-          <h2 className="text-sm text-black font-mono text-cyber-primary  dark:text-white  uppercase tracking-[0.4em] mb-4">
-            The Repository
-          </h2>
-          <div className="flex items-baseline gap-4">
-            <h3 className="text-4xl typo-secondary md:text-5xl font-bold dark:text-white  tracking-tight">
-              Project Archive
-            </h3>
-            <div className="h-px flex-grow  from-cyber-primary/5 to-transparent bg-gradient-to-r from-indigo-500 via-purple-500 "></div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5 }}
+          className="mb-16"
+        >
+          <div className="flex items-center gap-3 mb-4">
+            <Briefcase className="w-5 h-5 text-blue-400" />
+            <h2 className="text-sm font-mono text-blue-400 uppercase tracking-[0.4em]">
+              Professional Work
+            </h2>
           </div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="flex items-baseline gap-4">
+            <h3 className="text-4xl md:text-5xl font-bold text-black dark:text-white tracking-tight">
+              Projects {""}
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                Archive
+              </span>
+            </h3>
+            <div className="h-px flex-grow bg-gradient-to-r from-blue-400/30 via-cyan-400/30 to-transparent" />
+          </div>
+          <span className="bg-gradient-to-r mt-1 from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+            Some of the projects are from work and some are on my own time.
+          </span>
+        </motion.div>
+
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
           {PROJECTS.map((project) => (
-            <div
+            <motion.div
               key={project.id}
-              className="group relative  rounded-3xl overflow-hidden border-glow transition-all duration-700 hover:-translate-y-2"
+              variants={fadeUp}
+              className="relative group rounded-2xl bg-white dark:bg-white/5 backdrop-blur-xl border border-gray-200 dark:border-white/10 overflow-hidden hover:border-blue-400/30 transition-all duration-500"
             >
-              <div className="aspect-[16/10] overflow-hidden relative">
-                <img
-                  src={project.imageUrl}
-                  alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 grayscale group-hover:grayscale-0"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/20 to-transparent opacity-80 group-hover:opacity-40 transition-opacity"></div>
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-400/5 to-cyan-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl" />
 
-              <div className="p-8">
-                <div className="bottom-1 left-8">
-                  <h4 className="text-2xl font-bold typo-secondary group-hover:text-glow transition-all">
-                    {project.title}
-                  </h4>
+              <div className="relative">
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={project.imageUrl}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+                  <div className="absolute top-3 left-3">
+                    {project.tag === "work" ? (
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 text-[11px] font-mono uppercase tracking-wider rounded-full bg-blue-400/90 text-white">
+                        <Briefcase className="w-3 h-3" />
+                        Work Project
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 text-[11px] font-mono uppercase tracking-wider rounded-full bg-blue-400/90 text-white">
+                        <Briefcase className="w-3 h-3" />
+                        Project
+                      </span>
+                    )}
+                  </div>
                 </div>
-                <p className="text-slate-400 text-sm leading-relaxed mb-2">
-                  {project.description}
-                </p>
 
-                <div className="flex items-center justify-between ">
-                  <div className="flex flex-wrap gap-3">
+                <div className="p-6">
+                  <div className="flex items-start justify-between gap-2 mb-2">
+                    <h4 className="text-lg font-semibold text-black dark:text-white group-hover:text-blue-400 transition-colors duration-300">
+                      {project.title}
+                    </h4>
+                    {project.link && (
+                      <Link
+                        href={project.link}
+                        target="_blank"
+                        className="p-2 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-blue-400/10 transition-all duration-300 shrink-0"
+                      >
+                        <ExternalLink className="w-4 h-4 text-gray-500 dark:text-gray-400 group-hover:text-blue-400" />
+                      </Link>
+                    )}
+                  </div>
+
+                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4">
+                    {project.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2">
                     {project.tech.map((t) => (
                       <span
                         key={t}
-                        className="text-[10px] font-mono text-slate-500 group-hover:text-cyber-accent transition-colors"
+                        className="px-2.5 py-1 text-[11px] font-mono uppercase tracking-wider rounded-full bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/5"
                       >
-                        &lt;{t}/&gt;
+                        {t}
                       </span>
                     ))}
                   </div>
-                  <a
-                    href={project.link}
-                    className="w-10 h-10 rounded-full bg-card flex items-center justify-center text-white hover:bg-cyber-primary transition-all"
-                  >
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M14 5l7 7m0 0l-7 7m7-7H3"
-                      />
-                    </svg>
-                  </a>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </main>
+    </section>
   );
 }

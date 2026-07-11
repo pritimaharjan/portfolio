@@ -1,198 +1,165 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-import { MapPin, Plus } from "lucide-react";
-import Image from "next/image";
-import { list } from "postcss";
-import { TypeAnimation } from "react-type-animation";
+import { motion } from "motion/react";
+import { Briefcase, Calendar, ArrowUpRight } from "lucide-react";
 import { EXPERIENCES } from "../data/data";
-export default function Experience() {
-  const experiences = [
-    {
-      company: "Digischool Global",
-      start: "May 2025",
-      end: "August 2025",
-      location: "Dillibazar",
-      position: "Intern, Project Facilitator",
-      content:
-        "During the intership, I was tasked with facilitating the teacher training program for the teachers of the school and provide workshop to the students under the supervision of the Mr.Kuber Bajra Shakya.",
-      desc: [
-        "Conducted teacher training programs",
-        "Facilitated student workshops",
-        "Ran DigiClub in more than 4 schools",
-      ],
-      img: "/digischool.png",
-    },
-    {
-      company: "Infinity Digital Agency",
-      start: "August 2025",
-      end: "Present",
-      location: "Ratopul",
-      position: "Intern, Full Stack Developer",
-      content:
-        "Under the supervision of Line Manager Mr. Abhishek Paudel and Technical Lead Mr. Anish Manandhar, I had the opportunity to work on e-commerce websites and an online travel booking platform with the team. This experience helped me learn the fundamentals of web development and gain practical, hands-on experience in the field.",
-      desc: [
-        "E-commerce Website: Lumbini Handicraft",
-        "E-commerce Website: Barcode Nepal",
-        "Online Travel Booking Platform: Aakash Sewa",
-      ],
-      img: "/indinity_digital_agency.webp",
-    },
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2 },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] as const },
+  },
+};
+
+const lineVariants = {
+  hidden: { scaleY: 0 },
+  visible: {
+    scaleY: 1,
+    transition: { duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] as const },
+  },
+};
+
+function CompanyAvatar({ name }: { name: string }) {
+  const initial = name.charAt(0);
+  const colors = [
+    "from-violet-500 to-fuchsia-500",
+    "from-cyan-500 to-blue-500",
+    "from-amber-500 to-orange-500",
   ];
-
+  const colorClass = colors[name.length % colors.length];
   return (
-    // <main
-    //   id="experience"
-    //   className="bg-gray-50 dark:bg-background py-24 transition-colors"
-    // >
-    //   <section className="container mx-auto px-6 max-w-4xl">
-
-    //     <div className="text-center mb-16">
-    //       <h1 className="text-4xl sm:text-6xl font-bold text-primary dark:text-white">
-    //         Experience
-    //       </h1>
-    //       <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
-    //         A glimpse into my professional journey and hands-on learning
-    //         experience.
-    //       </p>
-    //     </div>
-
-    //     <div className="space-y-6">
-    //       {experiences.map((exp, i) => (
-    //         <Collapsible key={i} className="group">
-    //           <Card className="overflow-hidden rounded-2xl border-none bg-white dark:bg-muted transition hover:bg-gray-100 hover:shadow-lg">
-
-    //             <CollapsibleTrigger className="w-full text-left">
-    //               <CardHeader className="flex items-center justify-between gap-6 cursor-pointer transition  dark:hover:bg-muted/70">
-
-    //                 <div className="flex items-center gap-4">
-    //                   <div>
-    //                     <CardTitle className="text-3xl">
-    //                       {exp.company}
-    //                     </CardTitle>
-    //                     <p className="text-sm text-muted-foreground">
-    //                       {exp.start} – {exp.end}
-    //                     </p>
-    //                   </div>
-    //                 </div>
-
-    //                 <div className="hidden md:block text-right">
-    //                   <p className="font-medium text-gray-700 dark:text-gray-300">
-    //                     {exp.position}
-    //                   </p>
-    //                 </div>
-
-    //                 <Plus className="w-5 h-5 transition-transform group-data-[state=open]:rotate-45" />
-    //               </CardHeader>
-    //             </CollapsibleTrigger>
-
-    //             <CollapsibleContent className="data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
-    //               <CardContent className="pt-0 pb-6 space-y-5 text-left">
-
-    //                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
-    //                   <MapPin className="w-4 h-4 text-primary" />
-    //                   <span>{exp.location}</span>
-    //                 </div>
-    //                 <p>{exp.content}</p>
-
-    //                 <ul className="list-disc pl-5 space-y-2 text-sm text-muted-foreground">
-    //                   {exp.desc.map((d, idx) => (
-    //                     <li key={idx}>
-    //                       <TypeAnimation
-    //                         sequence={[d, 1500]}
-    //                         speed={50}
-    //                         wrapper="span"
-    //                         repeat={0}
-    //                         cursor={false}
-    //                         style={{ display: "inline-block" }}
-    //                       />
-    //                     </li>
-    //                   ))}
-    //                 </ul>
-    //               </CardContent>
-    //             </CollapsibleContent>
-    //           </Card>
-    //         </Collapsible>
-    //       ))}
-    //     </div>
-    //   </section>
-    // </main>
-
-    <section
-      id="experience"
-      className=" bg-foreground dark:bg-background py-32 relative"
+    <div
+      className={`w-12 h-12 rounded-xl bg-gradient-to-br ${colorClass} flex items-center justify-center text-white font-bold text-lg shadow-lg shrink-0`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-20">
-          <h2 className="text-sm text-black font-mono text-cyber-primary  dark:text-white  uppercase tracking-[0.4em] mb-4">
-            Work History
-          </h2>
-          <div className="flex items-baseline gap-4">
-            <h3 className="text-4xl typo-secondary md:text-5xl font-bold dark:text-white  tracking-tight">
-              Career Architecture
-            </h3>
-            <div className="h-px flex-grow   from-cyber-primary/5 to-transparent bg-gradient-to-r from-indigo-500 via-purple-500 "></div>
+      {initial}
+    </div>
+  );
+}
+
+export default function Experience() {
+  return (
+    <section className="relative py-32 overflow-hidden bg-foreground dark:bg-black">
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(99,102,241,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.03)_1px,transparent_1px)] bg-[size:64px_64px] pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5 }}
+          className="mb-20"
+        >
+          <div className="flex items-center gap-3 mb-4">
+            <Briefcase className="w-5 h-5 text-amber-400" />
+            <h2 className="text-sm font-mono text-amber-400 uppercase tracking-[0.4em]">
+              Work History
+            </h2>
           </div>
-        </div>
+          <div className="flex items-baseline gap-4">
+            <h3 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
+              Career{" "}
+              <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
+                Architecture
+              </span>
+            </h3>
+            <div className="h-px flex-grow bg-gradient-to-r from-amber-400/30 via-purple-500/30 to-transparent" />
+          </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          {EXPERIENCES.map((exp, index) => (
-            <div key={exp.id} className="lg:col-span-12 group flex gap-8">
-              <div className="md:flex flex-col hidden  items-center">
-                <div className="w-10 bg-card  h-10 rounded-full border border-cyber-primary/30 bg-cyber-primary/10 flex items-center justify-center text-cyber-primary font-mono text-xs group-hover:bg-cyber-primary group-hover:text-white transition-all duration-500">
-                  0{index + 1}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="relative"
+        >
+          <div className="absolute left-6 top-0 bottom-0 w-px hidden md:block">
+            <motion.div
+              variants={lineVariants}
+              className="h-full w-full bg-gradient-to-b from-amber-400 via-purple-500 to-transparent origin-top"
+            />
+          </div>
+
+          <div className="space-y-16">
+            {EXPERIENCES.map((exp, index) => (
+              <motion.div
+                key={exp.id}
+                variants={cardVariants}
+                className="relative md:pl-16 group"
+              >
+                <div className="absolute left-4 top-1 w-4 h-4 hidden md:block">
+                  <div className="w-4 h-4 rounded-full bg-amber-400 border-4 border-background shadow-[0_0_12px_rgba(251,191,36,0.3)] group-hover:shadow-[0_0_20px_rgba(251,191,36,0.5)] transition-shadow duration-500" />
                 </div>
-                <div className="w-px flex-grow from-cyber-primary/30 to-transparent bg-gradient-to-b from-indigo-500 via-purple-200   my-2 group-last:hidden"></div>
-              </div>
 
-              <div className=" flex-grow pb-16">
-                <div className=" bg-white rounded-2xl p-8 border-glow   group relative  overflow-hidden border-glow transition-all duration-700 hover:-translate-y-2">
-                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-                    <div>
-                      <h4 className="text-2xl font-bold text-white mb-1">
-                        {exp.role}
-                      </h4>
-                      <p className="cyber-primary font-medium">{exp.company}</p>
+                <div className="relative rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 overflow-hidden group-hover:border-amber-400/30 transition-all duration-500">
+                  <div className="absolute inset-0 bg-gradient-to-br from-amber-400/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+                  <div className="relative p-6 md:p-8">
+                    <div className="flex items-start gap-4 mb-6">
+                      <CompanyAvatar name={exp.company} />
+                      <div className="flex-1 min-w-0">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-1">
+                          <h4 className="text-xl font-semibold text-white">
+                            {exp.role}
+                          </h4>
+                          <span className="inline-flex items-center gap-1.5 text-xs text-slate-400 font-mono whitespace-nowrap">
+                            <Calendar className="w-3.5 h-3.5" />
+                            {exp.period}
+                          </span>
+                        </div>
+                        <p className="text-amber-400/80 font-medium text-sm flex items-center gap-1.5">
+                          <ArrowUpRight className="w-3.5 h-3.5" />
+                          {exp.company}
+                        </p>
+                      </div>
                     </div>
-                    <div className="text-right">
-                      <span className="inline-block px-3 py-1 rounded bg-slate-900 border border-white/5 text-slate-400 text-xs font-mono">
-                        {exp.period}
-                      </span>
+
+                    <ul className="space-y-3 mb-8">
+                      {exp.description.map((desc, i) => (
+                        <motion.li
+                          key={i}
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: i * 0.1, duration: 0.4 }}
+                          className="flex gap-3 text-slate-300 text-sm leading-relaxed group/item"
+                        >
+                          <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-400/60 shrink-0 group-hover/item:bg-amber-400 transition-colors" />
+                          {desc}
+                        </motion.li>
+                      ))}
+                    </ul>
+
+                    <div className="flex flex-wrap gap-2 pt-6 border-t border-white/5">
+                      {exp.skills.map((skill, i) => (
+                        <motion.span
+                          key={skill}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: i * 0.05 + 0.3 }}
+                          className="px-3 py-1 text-[11px] font-mono uppercase tracking-wider rounded-full bg-white/5 text-slate-400 border border-white/5 hover:bg-amber-400/10 hover:text-amber-400 hover:border-amber-400/20 transition-all duration-300 cursor-default"
+                        >
+                          {skill}
+                        </motion.span>
+                      ))}
                     </div>
                   </div>
-
-                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                    {exp.description.map((desc, i) => (
-                      <li
-                        key={i}
-                        className="flex gap-3 text-slate-400 text-sm leading-relaxed"
-                      >
-                        <span className="text-cyber-primary">↳</span>
-                        {desc}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="flex flex-wrap gap-2 pt-6 border-t border-white/5">
-                    {exp.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="text-[10px] text-slate-500 font-mono uppercase tracking-widest bg-white/5 px-2 py-1 rounded"
-                      >
-                        #{skill.replace(" ", "_")}
-                      </span>
-                    ))}
-                  </div>
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );
